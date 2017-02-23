@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -69,6 +70,7 @@ func handleMessages() {
 	for {
 		// Grab the next message from the broadcast channel
 		msg := <-broadcast
+		fmt.Println(msg)
 		// Send it out to every client that is currently connected
 		for client := range clients {
 			err := client.WriteJSON(msg)
